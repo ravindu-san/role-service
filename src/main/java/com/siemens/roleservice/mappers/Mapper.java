@@ -1,7 +1,7 @@
 package com.siemens.roleservice.mappers;
 
-public interface Mapper<A,B> {
-    B mapTo(A a);
+public interface Mapper<A, B> {
+  B mapTo(A a);
 
-    A mapFrom(B b);
+  A mapFrom(B b);
 }

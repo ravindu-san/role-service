@@ -8,18 +8,19 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class PermissionMapperImpl implements Mapper<PermissionEntity, PermissionDto> {
-    private ModelMapper modelMapper;
+  private ModelMapper modelMapper;
 
-    public PermissionMapperImpl(ModelMapper modelMapper){
-        this.modelMapper = modelMapper;
-    }
-    @Override
-    public PermissionDto mapTo(PermissionEntity permissionEntity) {
-        return modelMapper.map(permissionEntity, PermissionDto.class);
-    }
+  public PermissionMapperImpl(ModelMapper modelMapper) {
+    this.modelMapper = modelMapper;
+  }
 
-    @Override
-    public PermissionEntity mapFrom(PermissionDto permissionDto) {
-        return modelMapper.map(permissionDto, PermissionEntity.class);
-    }
+  @Override
+  public PermissionDto mapTo(PermissionEntity permissionEntity) {
+    return modelMapper.map(permissionEntity, PermissionDto.class);
+  }
+
+  @Override
+  public PermissionEntity mapFrom(PermissionDto permissionDto) {
+    return modelMapper.map(permissionDto, PermissionEntity.class);
+  }
 }

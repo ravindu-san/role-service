@@ -17,29 +17,27 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 @AutoConfigureMockMvc
 public class PermissionControllerTest {
-    private MockMvc mockMvc;
+  private MockMvc mockMvc;
 
+  @Autowired
+  public PermissionControllerTest(MockMvc mockMvc) {
+    this.mockMvc = mockMvc;
+  }
 
-    @Autowired
-    public PermissionControllerTest(MockMvc mockMvc) {
-        this.mockMvc = mockMvc;
-    }
+  @Test
+  public void testGetPermissionsReturnsHttpStatus200() throws Exception {
+    mockMvc
+        .perform(MockMvcRequestBuilders.get("/permissions").contentType(MediaType.APPLICATION_JSON))
+        .andExpect(MockMvcResultMatchers.status().isOk());
+  }
 
-    @Test
-    public void testGetPermissionsReturnsHttpStatus200() throws Exception {
-        mockMvc.perform(
-                MockMvcRequestBuilders.get("/permissions")
-                        .contentType(MediaType.APPLICATION_JSON)
-        ).andExpect(MockMvcResultMatchers.status().isOk());
-    }
-
-    @Test
-    public void testGetPermissionsReturnsListOfPermissions() throws Exception {
-        mockMvc.perform(
-                MockMvcRequestBuilders.get("/permissions")
-                        .contentType(MediaType.APPLICATION_JSON)
-        ).andExpect((MockMvcResultMatchers.jsonPath("$[0].id").isString())
-        ).andExpect(MockMvcResultMatchers.jsonPath("$[0].id").value("706ee8e3-6034-4f27-ab20-4397ad874a09")
-        ).andExpect(MockMvcResultMatchers.jsonPath("$[0].name").value("Read Data"));
-    }
+  @Test
+  public void testGetPermissionsReturnsListOfPermissions() throws Exception {
+    mockMvc
+        .perform(MockMvcRequestBuilders.get("/permissions").contentType(MediaType.APPLICATION_JSON))
+        .andExpect((MockMvcResultMatchers.jsonPath("$[0].id").isString()))
+        .andExpect(
+            MockMvcResultMatchers.jsonPath("$[0].id").value("706ee8e3-6034-4f27-ab20-4397ad874a09"))
+        .andExpect(MockMvcResultMatchers.jsonPath("$[0].name").value("Read Data"));
+  }
 }
