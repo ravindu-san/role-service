@@ -15,7 +15,6 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "permission")
 public class PermissionEntity {
-    @Id
-    private String id;
-    private String name;
+  @Id private String id;
+  private String name;
 }
