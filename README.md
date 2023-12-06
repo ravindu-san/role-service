@@ -7,9 +7,9 @@
 | `[GET] /permissions`  |                      -              | Retreive all permissions         |
 | `[PATCH] /roles/{id}` | { "permissions": [{"id": \<str\>}]} | Set permissions for a given role |
 
+## Tests
+* (few) unit and integration tests can be found in [src/test](src/test).
 
+## Code Formatting
+This repository use git [`pre-commit`](https://pre-commit.com/) hooks to format code. The formatting style is `Google Java style`.
 
-
-
-  ## Tests
-* (few) unit and integration tests can be found in [src/test](src/test)  
