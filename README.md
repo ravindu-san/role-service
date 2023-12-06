@@ -1,7 +1,7 @@
 # role-service
 
-## REST End Points
-|        Endpoind       |            Request Body             |             Description          |
+## REST Endpoints
+|        Endpoint       |            Request Body             |             Description          |
 |:--------------------- |:-----------------------------------:|:---------------------------------|
 | `[GET] /roles`        |                      -              | Retreive all roles               |
 | `[GET] /permissions`  |                      -              | Retreive all permissions         |
