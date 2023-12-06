@@ -21,4 +21,18 @@ public class RoleServiceImpl implements RoleService {
     public List<RoleEntity> findAll() {
         return StreamSupport.stream(roleRepository.findAll().spliterator(), false).collect(Collectors.toList());
     }
+
+    @Override
+    public RoleEntity setPermissionsForRole(String roleId, RoleEntity roleEntity) {
+        return roleRepository.findById(roleId)
+                .map(existingRole -> {
+                    existingRole.setPermissions(roleEntity.getPermissions());
+                    return roleRepository.save(existingRole);
+                }).orElseThrow();
+    }
+
+    @Override
+    public boolean isExist(String roleId) {
+        return roleRepository.existsById(roleId);
+    }
 }

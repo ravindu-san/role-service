@@ -4,8 +4,9 @@ import com.siemens.roleservice.domain.dtos.RoleDto;
 import com.siemens.roleservice.domain.entities.RoleEntity;
 import com.siemens.roleservice.mappers.Mapper;
 import com.siemens.roleservice.services.RoleService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -27,5 +28,16 @@ public class RoleController {
         return roles.stream()
                 .map(roleMapper::mapTo)
                 .collect(Collectors.toList());
+    }
+
+    @PatchMapping("/roles/{id}")
+    public ResponseEntity<RoleDto> setPermissionsForRole(@PathVariable("id") String roleId, @RequestBody RoleDto roleDto) {
+        if (!roleService.isExist(roleId)) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        RoleEntity roleEntity = roleMapper.mapFrom(roleDto);
+        RoleEntity updatedRole = roleService.setPermissionsForRole(roleId, roleEntity);
+        return new ResponseEntity<>(roleMapper.mapTo(updatedRole), HttpStatus.OK);
     }
 }
