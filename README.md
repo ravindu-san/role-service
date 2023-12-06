@@ -11,5 +11,5 @@
 * (few) unit and integration tests can be found in [src/test](src/test).
 
 ## Code Formatting
-This repository use git [`pre-commit`](https://pre-commit.com/) hooks to format code. The formatting style is `Google Java style`.
+This repository uses git [`pre-commit`](https://pre-commit.com/) hooks to format code. The formatting style is `Google Java style`.
 
